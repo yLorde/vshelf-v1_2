@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VShelf | Meus Jogos</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script src="../scripts/main.js"></script>
+    <link rel="stylesheet" href="../styles/global.css">
+
+    <script src="../scripts/popMessage.js"></script>
+
+    <script>
+        const lista = [
+            {
+                id: 1,
+                nome: 'Red Dead Redemption 2',
+                status: 'Completo',
+                img: 'https://image.api.playstation.com/cdn/UP1004/CUSA03041_00/Hpl5MtwQgOVF9vJqlfui6SDB5Jl4oBSq.png',
+                loja: 'Steam'
+            },
+            {
+                id: 2,
+                nome: 'Grand Theft Auto V',
+                status: 'Início',
+                img: 'https://upload.wikimedia.org/wikipedia/pt/8/80/Grand_Theft_Auto_V_capa.png',
+                loja: 'Steam'
+            },
+            {
+                id: 3,
+                nome: 'Farming Simulator 22',
+                status: 'Início',
+                img: 'https://cdn1.epicgames.com/salesEvent/salesEvent/725818d8-9768-4a6a-a723-3039aaee1e23_1200x1600-3b6116d3fc1b566b71251d04bce27938',
+                loja: 'Steam'
+            },
+            {
+                id: 4,
+                nome: 'Minecraft',
+                status: 'Início',
+                loja: 'Xbox',
+            }
+        ];
+
+        window.onload = function () {
+            const tema = window.localStorage.getItem('tema');
+
+            document.getElementById('window').innerHTML = popMessage('Meus Jogos', tema);
+
+            lista.map((item) => {
+                document.getElementById('window').innerHTML += popMessage(`
+                    <div>
+                        <div class="flex justify-between">
+                            <div class="justify-start text-start" id="jogo">
+                                <h2>Jogo: ${item.nome}</h2>
+                                <h2>Status: ${item.status}</h2>
+                                <h2>Loja: ${item.loja}</h2>
+                            </div>
+                            <div>
+                                <img style="width: 100px;" src="${item.img ? item.img : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNNLEL-qmmLeFR1nxJuepFOgPYfnwHR56vcw&s'}" />
+                            </div>
+                        </div>
+                        <hr class="mt-2 mb-2" />
+                        <div class="flex justify-evenly" id="controls">
+                            <button onclick="abrirJogo('${item.id}');" class="bg-green-500 p-2 rounded-md hover:bg-green-600 hover:duration-150 duration-150">Abrir Jogo</button>
+                            <button onclick="removerJogo('${item.id}');" class="bg-red-500 p-2 rounded-md hover:bg-red-600 hover:duration-150 duration-150">Remover Jogo</button>
+                        </div>
+                    </div>
+                `, tema);
+            });
+        };
+
+        function abrirJogo(id) {
+            console.log('Abrindo: ', lista.find(x => x.id == id));
+        };
+
+        function removerJogo(id) {
+            console.log('Removendo: ', lista.find(x => x.id == id));
+        };
+    </script>
+</head>
+
+<body>
+    <div class="window" id="window"></div>
+</body>
+
+</html>

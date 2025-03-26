@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VShelf | Página Inicial</title>
+
+    <link rel="stylesheet" href="./pages/styles/global.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="pages/scripts/popMessage.js"></script>
+    <script src="pages/scripts/popMessageHref.js"></script>
+
+    <script>
+        fetch('http://localhost:1703/load-config').then(data => data.json()).then(data => {
+            window.localStorage.setItem("tema", data.tema);
+        });
+    </script>
+
+    <script src="./pages/scripts/main.js"></script>
+
+    <script>
+        function getProfile() {
+            fetch('http://localhost:1703/load-homepage', {
+                method: 'GET',
+            })
+                .then(response => response.json())
+                .then(data => {
+                    const tema = data.tema;
+                    document.getElementById('window').innerHTML += popMessage(`Bem vindo(a), ${data.username}`, tema);
+
+                    document.getElementById('window').innerHTML += popMessage('Aproveite nossa plataforma! Em breve terá mais funcionalidades.', tema);
+
+                    document.getElementById('window').innerHTML += popMessageHref('Clique aqui para acessar as configurações.', './pages/app/config.html', tema);
+
+                    document.getElementById('window').innerHTML += popMessage(
+                        `Você está usando a versão: ${data.version}`, tema);
+                });
+        };
+
+        window.onload = () => {
+            getProfile();
+        };
+    </script>
+</head>
+
+<body>
+    <div class="window" id="window">
+    </div>
+</body>
+
+</html>

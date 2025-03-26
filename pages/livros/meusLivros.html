@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VShelf | Meus Livros</title>
+    <link rel="stylesheet" href="../styles/global.css">
+    <script src="../scripts/main.js"></script>
+    <style>
+        #window {
+            margin-bottom: 20px;
+        }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../scripts/popMessage.js"></script>
+    <script>
+        function lerLivro(livro) {
+            fetch(`http://localhost:1703/ler-livro?livro=${livro}`)
+                .then(response => response.blob())
+                .then(blob => {
+                    const url = URL.createObjectURL(blob);
+                    window.open(url, '_blank', `width=1366,height=720`, `title=VShelf | ${String(livro).split('.pdf')[0]}`, `icon=icon.ico`);
+                });
+        };
+
+        function removerLivro(livro) {
+            fetch(`http://localhost:1703/remover-livro?livro=${livro}`, { method: 'POST' });
+            window.location.reload();
+        };
+        window.onload = function () {
+            document.getElementById('title').innerHTML += popMessage('Meus Livros', window.localStorage.getItem('tema'));
+
+            fetch('http://localhost:1703/meus-livros')
+                .then(response => response.json())
+                .then(livros => {
+                    livros.forEach(livro => {
+                        document.getElementById('content').innerHTML += popMessage(`
+                            <div class="livro">
+                                <div class="livro-titulo text-start">${String(livro).split('.pdf')[0]}</div>
+                                <div class="livro-descricao">
+                                    
+                                    <div class="text-sm text-start">
+                                        <b>PÁGINAS LIDAS:</b> %LEITURA% <br />
+                                        <b>ADICIONADO EM:</b> %DATA% <br />
+                                    </div>
+                                    <br>
+                                    <div class="livro-botoes flex flex-row justify-between">
+                                        <button onclick="lerLivro('${livro}')" class="border rounded-md border-black p-1 px-3 hover:bg-black hover:text-white hover-duration-200 duration-200">Ler como PDF</button>
+                                        <button onclick="removerLivro('${livro}')" class="border rounded-md border-black p-1 px-3 hover:bg-black hover:text-white hover-duration-200 duration-200">Remover</button>
+                                    </div>
+                                </div>
+                            </div>
+                        `, window.localStorage.getItem('tema'));
+                    });
+                });
+        }
+    </script>
+</head>
+
+<body>
+    <div id="window" class="window">
+        <div id="title"></div>
+        <div id="content"></div>
+    </div>
+</body>
+
+</html>

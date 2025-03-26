@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VShelf | Configurações</title>
+
+    <script src="../scripts/main.js"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../scripts/popMessage.js"></script>
+    <script src="../scripts/popInput.js"></script>
+
+    <link rel="stylesheet" href="../styles/global.css">
+    <script>
+
+        function getProfile() {
+            fetch('http://localhost:1703/load-config', {
+                method: 'GET',
+            })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('username').value = data.username;
+                    document.getElementById('theme').value = data.tema;
+                });
+        };
+
+        window.onload = () => {
+            const tema = window.localStorage.getItem("tema");
+            document.getElementById('window').innerHTML += popMessage('Configurações', tema);
+
+            document.getElementById('window').innerHTML += popInput('username', 'Nome do usuário', tema);
+            // document.getElementById('window').innerHTML += popInput('theme', 'Tema (claro ou escuro)', tema);
+
+            document.getElementById('window').innerHTML += popMessage(`
+            <div class="">
+                <div>
+                    <h1>Tema</h1>
+                </div>
+                <div class="flex justify-evenly">
+                    <button onClick="window.localStorage.setItem('tema', 'claro'); window.location.reload();" class="border border-default hover:bg-black hover:text-white rounded-md hover:duration-150 duration-150 p-2">Claro</button>
+                    <button onClick="window.localStorage.setItem('tema', 'escuro'); window.location.reload();" class="border border-default hover:bg-black hover:text-white rounded-md hover:duration-150 duration-150 p-2">Escuro</button>
+                </div>
+            </div>
+            `, tema)
+
+            document.getElementById('window').innerHTML += popMessage(`<button onclick="saveConfig()" class="btn btn-primary" type="submit">Salvar configurações</button>`, tema);
+
+            getProfile()
+        };
+
+
+        function saveConfig() {
+            const username = document.getElementById('username').value;
+            const theme = window.localStorage.getItem("tema");
+
+            console.log(username, theme);
+
+            fetch('http://localhost:1703/save-config', {
+                method: 'post',
+                headers: {
+                    username: username,
+                    theme: String(theme).toLocaleLowerCase()
+                }
+            }).then((response) => {
+                if (response.status === 200) {
+                    response.json().then(data => {
+                        window.localStorage.setItem("username", data.username);
+                        window.localStorage.setItem("tema", data.tema);
+                        window.location.href = `../../index.html`
+                    })
+                }
+            })
+        }
+    </script>
+
+</head>
+
+<body>
+    <div class="window" id="window" />
+</body>
+
+</html>

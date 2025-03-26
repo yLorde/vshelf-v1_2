@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VShelf | Abrir Link</title>
+
+    <link rel="stylesheet" href="../styles/global.css">
+
+    <script>
+        function abrirLink() {
+            const link = document.getElementById('link');
+            window.open(
+                `https://${link.value}`,
+                '_blank', 'width=1366,height=720',
+            );
+            // location.href = `https://${link.value}`;
+        };
+    </script>
+</head>
+
+<body>
+    <h1>VShelf | Abrir Link</h1>
+
+    <input type="text" id="link" placeholder="Link">
+    <button onclick="abrirLink()" id="abrir">Abrir</button>
+
+</body>
+
+</html>

@@ -1,0 +1,95 @@
+{
+  "name": "vshelf",
+  "productName": "VShelf",
+  "version": "1.2.9",
+  "description": "Um aplicativo para Windows que permite gerenciar suas economias, tarefas e agenda. Além disso, ele reúne sua lista de títulos favoritos e permite ler seus livros prediletos.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron main.js",
+    "build:mac": "electron-packager . VShelf --out=build --overwrite --ignore='^README.md,^.gitignore' --prune --platform=darwin --arch=x64 --icon=icon.icns",
+    "build:win": "electron-packager . VShelf --out=build --overwrite --ignore='^README.md,^.gitignore' --prune --platform=win32 --arch=x64 --icon=icon.ico",
+    "dist:windows": "electron-builder -w -c.extraMetadata.main=main.js",
+    "dist:mac": "electron-builder -m -c.extraMetadata.main=main.js",
+    "package": "electron-forge package"
+  },
+  "repository": "https://github.com/VShelf/app",
+  "publish": {
+    "provider": "github",
+    "releaseType": "release"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Technect",
+    "email": "contatotechnext@gmail.com"
+  },
+  "companyName": "Technext",
+  "publisher": "Technext",
+  "license": "ISC",
+  "devDependencies": {
+    "@electron/fuses": "^1.8.0",
+    "electron": "^33.2.1",
+    "electron-builder": "^25.1.8",
+    "electron-packager": "^17.1.2"
+  },
+  "build": {
+    "appId": "com.vshelf.app",
+    "productName": "VShelf",
+    "copyright": "Copyright (C) 2025 Technext",
+    "detectUpdateChannel": true,
+    "publish": "Technext",
+    "electronUpdaterCompatibility": true,
+    "win": {
+      "icon": "icon.ico",
+      "target": "nsis",
+      "publish": [
+        "github"
+      ]
+    },
+    "mac": {
+      "category": "technext.vshelf.app",
+      "icon": "icon.icns",
+      "publish": [
+        "github"
+      ],
+      "target": "dmg"
+    },
+    "dmg": {
+      "icon": "icon.icns",
+      "contents": [
+        {
+          "x": 130,
+          "y": 220
+        },
+        {
+          "x": 410,
+          "y": 220,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "nsis": {
+      "artifactName": "${productName}.Setup.${version}.${ext}",
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": "always",
+      "createStartMenuShortcut": "true",
+      "menuCategory": "Technext",
+      "license": "license.rtf",
+      "warningsAsErrors": true,
+      "oneClick": false,
+      "language": "0x0416",
+      "installerLanguages": [
+        "pt_BR"
+      ]
+    },
+    "directories": {
+      "output": "dist"
+    }
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.1",
+    "electron-updater": "^6.3.9",
+    "express": "^4.21.2",
+    "update-electron-app": "^3.1.0"
+  }
+}

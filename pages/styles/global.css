@@ -1,0 +1,22 @@
+:root {
+    --background-color: #ccc;
+    --default-bg: #fff;
+    --default-text: #000;
+}
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: var(--background-color);
+}
+
+#window {
+    margin-bottom: 20px;
+}
+
+.default-bg {
+    background-color: var(--default-bg);
+}
+
+.default-text {
+    color: var(--default-text);
+}
