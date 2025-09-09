@@ -24,7 +24,7 @@ function mainMenu(mainWindow) {
             //livros
             livros(mainWindow),
 
-            jogos(mainWindow),
+            // jogos(mainWindow),
 
             //utilidades(mainWindow),
         ];

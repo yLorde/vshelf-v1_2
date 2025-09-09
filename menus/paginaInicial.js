@@ -18,7 +18,7 @@ module.exports = function paginaInicial(mainWindow) {
             {
                 label: 'Abrir Configurações',
                 click() {
-                    mainWindow.loadFile('pages/titulos/addTitulo.html');
+                    mainWindow.loadFile('pages/app/config.html');
                 }
             },
             {

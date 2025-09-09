@@ -20,9 +20,10 @@
                 method: 'GET',
             })
                 .then(response => response.json())
-                .then(data => {
+                .then((data) => {
+
                     document.getElementById('username').value = data.username;
-                    document.getElementById('theme').value = data.tema;
+                    // document.getElementById('theme').value = data.tema;
                 });
         };
 
@@ -54,8 +55,6 @@
         function saveConfig() {
             const username = document.getElementById('username').value;
             const theme = window.localStorage.getItem("tema");
-
-            console.log(username, theme);
 
             fetch('http://localhost:1703/save-config', {
                 method: 'post',

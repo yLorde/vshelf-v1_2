@@ -9,20 +9,35 @@
     <link rel="stylesheet" href="../styles/global.css">
     <script src="../scripts/main.js"></script>
     <style>
+        html {
+            scrollbar-color: #191924 #121214;
+            scrollbar-width: thin;
+        }
+
         #window {
             margin-bottom: 20px;
         }
     </style>
+    <script src="../scripts/popMessage.js"></script>
     <script src="../scripts/loadFilmes.js"></script>
     <script src="../scripts/render.js"></script>
     <script src="../scripts/classificar.js"></script>
     <script src="../scripts/buscarFilme.js"></script>
     <script src="../scripts/removerFilme.js"></script>
+
 </head>
 
 <body>
     <div id="window">
         <header>
+            <div class="flex items-center justify-center p-1 text-white">
+                <div id="totalFilmes"></div>
+                <script>
+                    const localTotalFilmes = localStorage.getItem("filmes");
+                    const total = JSON.parse(localTotalFilmes).length
+                    window.document.querySelector('#totalFilmes').innerHTML += popMessage('Títulos registrados: ' + total, localStorage.getItem("tema"));
+                </script>
+            </div>
             <div class="flex items-center justify-center p-1">
                 <div
                     class="flex flex-col gap-2 default-text max-w-xl w-full default-bg p-5 rounded-md mt-8 shadow-md hover:scale-105 hover:duration-150 duration-150">
@@ -38,6 +53,7 @@
                         </div> -->
                         <input oninput="buscarFilme()" class="w-full default-bg default-text font-semibold outline-0"
                             placeholder="Buscar título" id="filme">
+
                     </div>
                 </div>
             </div>

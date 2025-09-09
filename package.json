@@ -1,7 +1,7 @@
 {
   "name": "vshelf",
   "productName": "VShelf",
-  "version": "1.2.9",
+  "version": "1.3",
   "description": "Um aplicativo para Windows que permite gerenciar suas economias, tarefas e agenda. Além disso, ele reúne sua lista de títulos favoritos e permite ler seus livros prediletos.",
   "main": "main.js",
   "scripts": {
@@ -19,12 +19,12 @@
   },
   "keywords": [],
   "author": {
-    "name": "Technect",
-    "email": "contatotechnext@gmail.com"
+    "name": "yLorde",
+    "email": "contato@ylorde.com.br"
   },
-  "companyName": "Technext",
-  "publisher": "Technext",
-  "license": "ISC",
+  "companyName": "yLorde",
+  "publisher": "yLorde",
+  "license": "MIT",
   "devDependencies": {
     "@electron/fuses": "^1.8.0",
     "electron": "^33.2.1",
@@ -34,9 +34,9 @@
   "build": {
     "appId": "com.vshelf.app",
     "productName": "VShelf",
-    "copyright": "Copyright (C) 2025 Technext",
+    "copyright": "Copyright (C) 2025 yLorde",
     "detectUpdateChannel": true,
-    "publish": "Technext",
+    "publish": "yLorde",
     "electronUpdaterCompatibility": true,
     "win": {
       "icon": "icon.ico",
@@ -46,7 +46,7 @@
       ]
     },
     "mac": {
-      "category": "technext.vshelf.app",
+      "category": "ylorde.vshelf.app",
       "icon": "icon.icns",
       "publish": [
         "github"
