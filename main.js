@@ -17,7 +17,9 @@ function createBrowserWindow() {
         mainWindow = new BrowserWindow({
             width: 1366,
             height: 720,
-            resizable: true,
+            minHeight: 720,
+            minWidth: 1366,
+            resizable: false,
             title: require('./package.json').productName,
             icon: "icon.icon",
         });
