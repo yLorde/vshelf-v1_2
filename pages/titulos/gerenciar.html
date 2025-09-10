@@ -7,16 +7,10 @@
     <title>VShel | Gerenciar Títulos</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../styles/global.css">
-
-    <style>
-        #window {
-            margin-bottom: 20px;
-        }
-    </style>
     <script src="../scripts/popMessage.js"></script>
     <script>
         fetch('http://localhost:1703/minha-lista').then((res) => res.json()).then((data) => {
-            document.getElementById('wind').innerHTML += popMessage('Total de Titulos: ' + data.length, 'text-start');
+            document.getElementById('wind').innerHTML += popMessage('Total de Titulos: ' + data.length, 'escuro', 'text-start', '');
 
             console.log(data);
 
@@ -31,7 +25,7 @@
             3 Estrelas: ${data.filter(titulo => titulo.classificacao == 3).length} <br><hr>
             4 Estrelas: ${data.filter(titulo => titulo.classificacao == 4).length} <br><hr>
             5 Estrelas: ${data.filter(titulo => titulo.classificacao == 5).length} <br><hr>
-            `, 'text-start');
+            `, 'escuro', 'text-start');
 
             document.getElementById('wind').innerHTML += popMessage(`
             Abandonado: ${data.filter(titulo => titulo.status == 'abandonado').length} <br><hr>
@@ -39,7 +33,7 @@
             Assistindo novamente: ${data.filter(titulo => titulo.status == 'assistindo novamente').length} <br><hr>
             Nunca assitidos: ${data.filter(titulo => titulo.status == 'nunca assistido').length} <br><hr>
             Já assistido: ${data.filter(titulo => titulo.status == 'já assistido').length} <br><hr>
-            `, 'text-start');
+            `, 'escuro', 'text-start');
 
 
             document.getElementById('wind').innerHTML += popMessage(`
@@ -52,7 +46,7 @@
             Mini Série: ${data.filter(titulo => titulo.tipo == 'mini serie').length} <br><hr>
             Mangá: ${data.filter(titulo => titulo.tipo == 'mangá').length} <br><hr>
             Série: ${data.filter(titulo => titulo.tipo == 'série').length} <br><hr>
-            `, 'text-start');
+            `, 'escuro', 'text-start');
         });
     </script>
 </head>

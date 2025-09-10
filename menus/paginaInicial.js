@@ -15,12 +15,12 @@ module.exports = function paginaInicial(mainWindow) {
                     mainWindow.loadFile('index.html')
                 },
             },
-            {
-                label: 'Abrir Configurações',
-                click() {
-                    mainWindow.loadFile('pages/app/config.html');
-                }
-            },
+            // {
+            //     label: 'Abrir Configurações',
+            //     click() {
+            //         mainWindow.loadFile('pages/app/config.html');
+            //     }
+            // },
             {
                 label: 'Exibição',
                 submenu: [

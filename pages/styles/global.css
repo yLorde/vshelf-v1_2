@@ -4,9 +4,12 @@
     --default-text: #000;
 }
 
+html,
 body {
     font-family: 'Courier New', Courier, monospace;
-    background-color: var(--background-color);
+    background-color: #000;
+    scrollbar-color: #191924 #121214;
+    scrollbar-width: thin;
 }
 
 #window {
