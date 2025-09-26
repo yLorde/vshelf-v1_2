@@ -1,7 +1,7 @@
 {
   "name": "vshelf",
   "productName": "VShelf",
-  "version": "1.9.11",
+  "version": "1.2.12",
   "description": "Um aplicativo para Windows que permite gerenciar suas economias, tarefas e agenda. Além disso, ele reúne sua lista de títulos favoritos e permite ler seus livros prediletos.",
   "main": "main.js",
   "scripts": {
@@ -13,7 +13,7 @@
     "dist:mac": "electron-builder -m -c.extraMetadata.main=main.js",
     "package": "electron-forge package"
   },
-  "repository": "https://github.com/VShelf/app",
+  "repository": "https://github.com/VShelf/windows",
   "publish": {
     "provider": "github",
     "releaseType": "release"
